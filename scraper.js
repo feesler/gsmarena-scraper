@@ -225,6 +225,9 @@ var scrapContentToFile = function(params, callback) {
 
             var $ = cheerio.load(html);
 
+            var additional = $('div#specs-list > p');
+            data.additional = additional.text();
+
             //tables (spec category)
             $(config.content.domString).map(function(i) {
                 var $self = $(this);
