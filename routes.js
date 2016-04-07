@@ -202,7 +202,8 @@ router.get('/files', function(req, res, next) {
                 var promises = [];
                 var readFileAsync = Promise.promisify(fs.readFile);
                 files.map(function(fileName) {
-                    promises.push(readFileAsync(dir + '/' + fileName, 'utf8'));
+                    if (fileName.indexOf('.json') != -1)
+                        promises.push(readFileAsync(dir + '/' + fileName, 'utf8'));
                 });
                 resolve(Promise.all(promises));
             }).map(function(data) {
